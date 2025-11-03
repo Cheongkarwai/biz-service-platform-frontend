@@ -7,6 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {Toast} from '../../components/toast/toast';
 import {AuthError} from '@supabase/supabase-js';
 import {UserService} from '../../services/user/user-service';
+import {ErrorResponse} from '../../model/supabase-auth-error';
 
 @Component({
   selector: 'app-forgot-password-page',
@@ -41,7 +42,7 @@ export class ForgotPasswordPage implements OnInit {
     this.userService.recoverPassword(email)
       .pipe(
         tap(result => {
-          if (result instanceof AuthError) throw result;
+          if (result instanceof ErrorResponse) throw result;
           this.dialog.open(Toast, {
             data: {
               text: 'Check your email to reset your password',
@@ -52,9 +53,10 @@ export class ForgotPasswordPage implements OnInit {
           })
         }),
         catchError((error) => {
-          if (error instanceof Error) this.dialog.open(Toast, {
+          if (error instanceof ErrorResponse) this.dialog.open(Toast, {
             data: {
               text: "Failed to reset password",
+              description: error.message,
               status: 'error'
             }
           })

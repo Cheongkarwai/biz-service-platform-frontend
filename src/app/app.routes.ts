@@ -6,6 +6,7 @@ import {AuthLayout} from './pages/auth-layout/auth-layout';
 import {LoginPage} from './pages/login-page/login-page';
 import { unauthenticatedGuard } from "./guard/auth/unauthenticated-guard";
 import {RegistrationPage} from './pages/registration-page/registration-page';
+import {ServiceDirectoryPage} from './pages/service-directory-page/service-directory-page';
 
 export const routes: Routes = [
   {path: '', component: LandingPage, canActivate: [unauthenticatedGuard]},
@@ -16,5 +17,8 @@ export const routes: Routes = [
       {path: 'register', component: RegistrationPage, data: {title: 'Sign up to become our member'}},
     ],
     canActivate: [authenticatedGuard]
+  },
+  {
+    path: 'services', component: ServiceDirectoryPage
   }
 ];
