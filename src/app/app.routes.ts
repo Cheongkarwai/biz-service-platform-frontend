@@ -7,6 +7,7 @@ import {LoginPage} from './pages/login-page/login-page';
 import { unauthenticatedGuard } from "./guard/auth/unauthenticated-guard";
 import {RegistrationPage} from './pages/registration-page/registration-page';
 import {ServiceDirectoryPage} from './pages/service-directory-page/service-directory-page';
+import {BusinessListingPage} from './pages/business-listing-page/business-listing-page';
 
 export const routes: Routes = [
   {path: '', component: LandingPage, canActivate: [unauthenticatedGuard]},
@@ -20,5 +21,8 @@ export const routes: Routes = [
   },
   {
     path: 'services', component: ServiceDirectoryPage
+  },
+  {
+    path: 'business-listing',component: BusinessListingPage
   }
 ];
