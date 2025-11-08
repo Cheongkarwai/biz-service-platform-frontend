@@ -1,16 +1,16 @@
 import {Routes} from '@angular/router';
-import {LandingPage} from './pages/landing-page/landing-page';
 import {authenticatedGuard} from './guard/auth/authenticated-guard';
 import {ForgotPasswordPage} from './pages/forgot-password-page/forgot-password-page';
 import {AuthLayout} from './pages/auth-layout/auth-layout';
 import {LoginPage} from './pages/login-page/login-page';
-import { unauthenticatedGuard } from "./guard/auth/unauthenticated-guard";
 import {RegistrationPage} from './pages/registration-page/registration-page';
 import {ServiceDirectoryPage} from './pages/service-directory-page/service-directory-page';
 import {BusinessListingPage} from './pages/business-listing-page/business-listing-page';
+import {HomePage} from './pages/home-page/home-page';
+import {AboutUsPage} from './pages/about-us-page/about-us-page';
 
 export const routes: Routes = [
-  {path: '', component: LandingPage, canActivate: [unauthenticatedGuard]},
+  {path: '', component: HomePage},
   {path: 'auth', component: AuthLayout, children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path: 'login', component: LoginPage, data: {title: 'Sign in to your account'}} ,
@@ -20,7 +20,10 @@ export const routes: Routes = [
     canActivate: [authenticatedGuard]
   },
   {
-    path: 'services', component: ServiceDirectoryPage
+    path: 'about-us', component: AboutUsPage
+  },
+  {
+    path: 'service-directory', component: ServiceDirectoryPage
   },
   {
     path: 'business-listing',component: BusinessListingPage

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ServiceCategory} from '../../model/service-category';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, map, Observable, switchMap, tap} from 'rxjs';
 import {RouterModule} from '@angular/router';
 import {Speciality} from '../../model/service';
 import {SpecialityService} from '../../services/speciality/speciality-service';
@@ -19,18 +19,28 @@ export class ServiceDirectoryPage implements OnInit{
 
   categories$!: Observable<ServiceCategory[]>;
   specialities$! : Observable<Speciality[]>;
+  selectedCategory$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(private specialityService: SpecialityService,
               private categoryService: CategoryService) {
   }
 
   ngOnInit() {
-    this.specialities$ = this.specialityService.findAll(10000, null, null);
-    this.categories$ = this.categoryService.findAll(10000, null, null);
+    this.categories$ = this.categoryService.findAll(10000, null, null)
+      .pipe(tap(categories => {
+        this.selectedCategory$.next(categories[0].id);
+      }));
+
+    this.specialities$ = this.selectedCategory$
+      .pipe(switchMap(category=> {
+        if(category === '') return [];
+        return this.specialityService.findAll(10000, null, null, [category]);
+      }));
   }
 
   selectCategory(category: string) {
     console.log(category);
+    this.selectedCategory$.next(category);
   }
 
   trackByFn(index: number, item: ServiceCategory) {
