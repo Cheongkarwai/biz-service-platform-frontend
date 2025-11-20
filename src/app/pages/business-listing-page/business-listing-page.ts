@@ -35,7 +35,7 @@ export class BusinessListingPage implements OnInit, AfterViewInit{
 
   ngOnInit() {
     this.route.queryParamMap
-      .pipe(map(params => params.get('service')))
+      .pipe(map(params => params.get('service') ?? ''))
       .subscribe(serviceId => {
         this.businessQuery.setServiceId(serviceId);
       });

@@ -8,24 +8,29 @@ import {ServiceDirectoryPage} from './pages/service-directory-page/service-direc
 import {BusinessListingPage} from './pages/business-listing-page/business-listing-page';
 import {HomePage} from './pages/home-page/home-page';
 import {AboutUsPage} from './pages/about-us-page/about-us-page';
+import {AdminLayout} from './pages/admin/admin-layout/admin-layout';
+import {UserLayout} from './pages/user-layout/user-layout';
+import {ManageUserPage} from './pages/admin/manage-user-page/manage-user-page';
 
 export const routes: Routes = [
-  {path: '', component: HomePage},
-  {path: 'auth', component: AuthLayout, children: [
+  {
+    path: '', component: UserLayout,
+    children: [{path: '', component: HomePage},
+      {path: 'about-us', component: AboutUsPage},
+      {path: 'service-directory', component: ServiceDirectoryPage},
+      {path: 'business-listing', component: BusinessListingPage}]
+  },
+  {
+    path: 'auth', component: AuthLayout, children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
-      {path: 'login', component: LoginPage, data: {title: 'Sign in to your account'}} ,
+      {path: 'login', component: LoginPage, data: {title: 'Sign in to your account'}},
       {path: 'forgot-password', component: ForgotPasswordPage, data: {title: 'Forgot password'}},
       {path: 'register', component: RegistrationPage, data: {title: 'Sign up to become our member'}},
     ],
     canActivate: [authenticatedGuard]
   },
   {
-    path: 'about-us', component: AboutUsPage
-  },
-  {
-    path: 'service-directory', component: ServiceDirectoryPage
-  },
-  {
-    path: 'business-listing',component: BusinessListingPage
+    path: 'admin', component: AdminLayout,
+    children: [{path: 'test', component: ManageUserPage}]
   }
 ];
