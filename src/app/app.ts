@@ -19,7 +19,6 @@ export class App implements OnInit{
   constructor(private readonly supabase: SupabaseService) {}
   async ngOnInit() {
     this.session = await this.supabase.getSession();
-    console.log(this.session);
     this.supabase.authChanges((_, session) => (this.session = session))
   }
 

@@ -31,6 +31,6 @@ export const routes: Routes = [
   },
   {
     path: 'admin', component: AdminLayout,
-    children: [{path: 'test', component: ManageUserPage}]
+    children: [{path: 'manage-users', component: ManageUserPage}]
   }
 ];
