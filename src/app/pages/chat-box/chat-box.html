@@ -1,0 +1,104 @@
+<div class="w-screen h-screen bg-gradient-to-tr from-eee to-neutral-200 flex flex-col justify-center">
+  <!--  <ui-resource-renderer #rendererElement *ngIf="ui$ | async as ui" [resource]="ui"></ui-resource-renderer>-->
+
+  @if (chatMessages$ | async; as chatMessages) {
+    <div class="w-[80%] max-w-4xl mx-auto">
+      @if (chatMessages.length === 0) {
+        <h1
+          class="z-10 bg-gradient-to-r from-black via-pink-500 to-violet-800 inline-block text-transparent bg-clip-text font-normal text-5xl leading-tight">
+          Hello there, I am your AI assistant
+        </h1><br/>
+        <h1
+          class="z-10 bg-gradient-to-r from-black via-pink-500 to-violet-800 inline-block text-transparent bg-clip-text font-normal text-5xl -mt-2 mb-2 leading-tight">
+          How can I help you?</h1>
+      }
+      <div #scrollContainer
+           [ngClass]="chatMessages.length === 0 ? 'max-w-4xl mx-auto h-[20vh] overflow-y-auto' : 'max-w-4xl mx-auto h-[70vh] overflow-y-auto px-3'">
+        @if (chatMessages.length === 0) {
+
+          <p
+            class=" animate-[wiggle_1s_ease-in-out_infinite] text-neutral-500 leading-tight tracking-tight mb-6 text-lg">
+            Use one of the most common prompts below <br/>or use one of your own prompt to begin</p>
+
+          <div class="flex w-full mb-6 gap-3 text-sm text-neutral-800">
+
+            <div (click)="showAllServices()"
+                 class="cursor-pointer group relative grow  shadow-sm hover:shadow-md hover:-translate-y-[1px] hover:bg-neutral-100/30 rounded-xl p-4 transition-all duration-300 ">
+              Show all the services offered by the business
+
+              <svg
+                class="absolute right-2 bottom-2 h-4 text-neutral-500 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 "
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16">
+                <g fill="none">
+                  <path
+                    d="M2 8a.75.75 0 0 1 .75-.75h8.787L8.25 4.309a.75.75 0 0 1 1-1.118L14 7.441a.75.75 0 0 1 0 1.118l-4.75 4.25a.75.75 0 1 1-1-1.118l3.287-2.941H2.75A.75.75 0 0 1 2 8z"
+                    fill="currentColor"></path>
+                </g>
+              </svg>
+            </div>
+
+          </div>
+        }
+        @for (message of chatMessages; track message.id) {
+          <div
+            class="flex mb-2"
+            [ngClass]="{
+        'justify-end': message.sender === 'user',
+        'justify-start': message.sender !== 'user'
+      }"
+          >
+            <div
+              class="px-4 py-2 rounded-xl max-w-[70%] text-sm/6 bg-neutral-100 shadow-sm"
+              [ngClass]="{
+          'text-black rounded-br-none': message.sender === 'user',
+          'text-black rounded-bl-none': message.sender !== 'user'
+        }"
+            >
+              {{ message.text }}
+            </div>
+          </div>
+          @if (message.intent !== 'unknown') {
+            @if (uiResources[message.id] | async; as uiResources) {
+              @for (uiResource of uiResources; track uiResource.uri) {
+                <div class="h-[80%]">
+                  <ui-resource-renderer
+                    #rendererElement
+                    [resource]="uiResource"
+                    autoResizeIframe="true"
+                  >
+                  </ui-resource-renderer>
+                </div>
+              }
+            }
+          }
+        }
+
+
+      </div>
+
+      <form [formGroup]="chatForm" class="bg-white h-28 rounded-2xl shadow-md border border-neutral-200 relative">
+
+        <div class="flex">
+        <textarea formControlName="message"
+                  class="grow m-4 border-0 focus:outline-none focus:ring-0 focus:border-transparent active:border-transparent"
+                  placeholder="Type your question here ..."></textarea>
+        </div>
+
+        <div class="flex gap-2 items-center absolute right-2 bottom-2">
+          <div class="text-xs">0/4000</div>
+          <button [disabled]="isLoading" (click)="sendMessage()"
+                  [ngClass]="isLoading ? 'cursor-pointer bg-neutral-500 rounded-full text-white w-8 h-8 p-2' : 'cursor-pointer bg-neutral-700 rounded-full text-white w-8 h-8 p-2 '"
+                  class="">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48"
+                    d="M112 244l144-144l144 144"></path>
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48"
+                    d="M256 120v292"></path>
+            </svg>
+
+          </button>
+        </div>
+      </form>
+    </div>
+  }
+</div>

@@ -11,6 +11,8 @@ import {AboutUsPage} from './pages/about-us-page/about-us-page';
 import {AdminLayout} from './pages/admin/admin-layout/admin-layout';
 import {UserLayout} from './pages/user-layout/user-layout';
 import {ManageUserPage} from './pages/admin/manage-user-page/manage-user-page';
+import {BusinessDetailsPage} from './pages/business-details-page/business-details-page';
+import {ChatBox} from './pages/chat-box/chat-box';
 
 export const routes: Routes = [
   {
@@ -18,7 +20,8 @@ export const routes: Routes = [
     children: [{path: '', component: HomePage},
       {path: 'about-us', component: AboutUsPage},
       {path: 'service-directory', component: ServiceDirectoryPage},
-      {path: 'business-listing', component: BusinessListingPage}]
+      {path: 'business-listing', component: BusinessListingPage},
+      {path: 'businesses/:id/details', component: BusinessDetailsPage}]
   },
   {
     path: 'auth', component: AuthLayout, children: [
@@ -32,5 +35,8 @@ export const routes: Routes = [
   {
     path: 'admin', component: AdminLayout,
     children: [{path: 'manage-users', component: ManageUserPage}]
+  },
+  {
+    path: 'chatbox', component: ChatBox
   }
 ];

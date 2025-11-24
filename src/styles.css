@@ -22,3 +22,16 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Step 1: Ensure the root elements are defined (if you want full viewport height) */
+
+
+/* Step 3: Set the custom element's height */
+ui-resource-renderer {
+  height: 100%;
+  display: block; /* Ensure it's not inline, though components usually are block */
+}
+
+/* Step 4: Finally, apply height to the target div */
+ui-resource-renderer > div {
+  height: 100%;
+}

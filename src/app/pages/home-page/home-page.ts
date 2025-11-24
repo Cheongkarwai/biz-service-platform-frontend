@@ -10,8 +10,6 @@ import {Navbar} from '../../components/navbar/navbar';
   imports: [
     AutocompleteSearch,
     RouterModule,
-    Footer,
-    Navbar,
   ],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',

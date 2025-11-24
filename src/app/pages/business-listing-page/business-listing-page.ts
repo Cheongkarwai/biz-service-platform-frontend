@@ -1,20 +1,19 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {BusinessService} from '../../services/business/business-service';
-import {BehaviorSubject, map, Observable, scan, switchMap, tap} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {Business} from '../../model/business';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {ReactiveFormsModule} from '@angular/forms';
-import {Filter} from '../../components/filter/filter';
 import {initFlowbite} from 'flowbite';
 import {ActivatedRoute} from '@angular/router';
 import {BusinessQueryService} from '../../services/business/business-query-service';
+import {BusinessUi} from '../../services/business/business-ui';
 
 @Component({
   selector: 'app-business-listing-page',
-  imports: [CommonModule, ScrollingModule, ReactiveFormsModule, Filter],
+  imports: [CommonModule, ScrollingModule, ReactiveFormsModule],
   templateUrl: './business-listing-page.html',
-  styleUrl: './business-listing-page.css',
+  styleUrl: './business-listing-page.css'
 })
 export class BusinessListingPage implements OnInit, AfterViewInit{
   title: string = 'Business Listing Page';
@@ -22,13 +21,12 @@ export class BusinessListingPage implements OnInit, AfterViewInit{
   businesses$!: Observable<Business[]>;
   isLoading$!: Observable<boolean>;
   hasMore$!: Observable<boolean>;
-
   constructor(private businessQuery: BusinessQueryService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private businessUi: BusinessUi) {
 
     this.route.queryParamMap.subscribe(params => {
       const serviceId = params.get('service');
-
     });
 
   }
