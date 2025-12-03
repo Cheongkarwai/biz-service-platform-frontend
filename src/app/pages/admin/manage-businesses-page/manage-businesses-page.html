@@ -1,0 +1,24 @@
+@if (businesses$ | async; as businesses) {
+  <div class="p-10 sm:ps-70 dark:bg-gray-800 min-h-full">
+    <div class="flex justify-between py-10 flex-wrap gap-3">
+      <div>
+        <h5 class="text-xl dark:text-white">Manage Business</h5>
+      </div>
+    </div>
+    <div>
+      <div>
+        <app-table [columns]="columns" [rows]="businesses" (edit)="handleEdit($event)" [canEditRow]="enableEditRow"></app-table>
+      </div>
+    </div>
+    @if(hasMore$ | async; as hasMore) {
+    <div class="flex justify-center pt-10">
+      <button [hidden]="!hasMore"  type="button" (click)="loadMore()" class="py-2.5 px-5 me-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 inline-flex items-center">
+              {{ 'Load More' }}
+            </button>
+    </div>
+    }
+  </div>
+}
+@else{
+  <app-loading-spinner></app-loading-spinner>
+}

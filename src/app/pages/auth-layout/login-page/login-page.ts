@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {SupabaseService} from '../../services/supabase/supabase.service';
+import {SupabaseService} from '../../../services/supabase/supabase.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {catchError, finalize, from, of, tap} from 'rxjs';
-import {Toast} from '../../components/toast/toast';
+import {Toast} from '../../../components/toast/toast';
 
 @Component({
   selector: 'app-login-page',

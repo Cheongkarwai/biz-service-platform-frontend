@@ -1,1 +1,188 @@
-<app-product-details></app-product-details>
+@if(business$ | async; as business){
+
+<section class="py-8 bg-white md:py-16 xl:py-24 dark:bg-gray-900 antialiased">
+  <div class="max-w-screen-xl mx-auto">
+    <div class="lg:flex justify-between">
+      <div class="px-4">
+        <div class="max-w-md lg:max-w-none mx-auto flex flex-col lg:flex-row justify-center mb-4">
+          <ul class="grid grid-cols-4 lg:block gap-4 order-2 lg:order-1 lg:space-y-4 mt-8 lg:mt-0" id="product-2-tab" data-tabs-toggle="#product-2-tab-content" data-tabs-active-classes="border-gray-200 dark:border-gray-700" data-tabs-inactive-classes="border-transparent hover:border-gray-200 dark:hover:dark:border-gray-700 dark:border-transparent" role="tablist">
+            <li class="me-2" role="presentation">
+              <button class="h-20 w-20 overflow-hidden border-2 rounded-lg sm:h-20 sm:w-20 md:h-24 md:w-24 p-2 cursor-pointer mx-auto" id="product-2-image-1-tab" data-tabs-target="#product-2-image-1" type="button" role="tab" aria-controls="product-2-image-1" aria-selected="false">
+                <img
+                  class="object-contain w-full h-full hidden dark:block"
+                  src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
+                  alt=""
+                />
+              </button>
+            </li>
+            <li class="me-2" role="presentation">
+              <button class="h-20 w-20 overflow-hidden border-2 rounded-lg sm:h-20 sm:w-20 md:h-24 md:w-24 p-2 cursor-pointer mx-auto" id="product-2-image-2-tab" data-tabs-target="#product-2-image-2" type="button" role="tab" aria-controls="product-2-image-2" aria-selected="false">
+                <img
+                  class="object-contain w-full h-full dark:hidden"
+                  src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-back.svg"
+                  alt=""
+                />
+                <img
+                  class="object-contain w-full h-full hidden dark:block"
+                  src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-back-dark.svg"
+                  alt=""
+                />
+              </button>
+            </li>
+            <li class="me-2" role="presentation">
+              <button class="h-20 w-20 overflow-hidden border-2 rounded-lg sm:h-20 sm:w-20 md:h-24 md:w-24 p-2 cursor-pointer mx-auto" id="product-2-image-3-tab" data-tabs-target="#product-2-image-3" type="button" role="tab" aria-controls="product-2-image-3" aria-selected="false">
+                <img
+                  class="object-contain w-full h-full dark:hidden"
+                  src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-components.svg"
+                  alt=""
+                />
+                <img
+                  class="object-contain w-full h-full hidden dark:block"
+                  src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-components-dark.svg"
+                  alt=""
+                />
+              </button>
+            </li>
+            <li class="me-2" role="presentation">
+              <button class="h-20 w-20 overflow-hidden border-2 rounded-lg sm:h-20 sm:w-20 md:h-24 md:w-24 p-2 cursor-pointer mx-auto" id="product-2-image-4-tab" data-tabs-target="#product-2-image-4" type="button" role="tab" aria-controls="product-2-image-4" aria-selected="false">
+                <img
+                  class="object-contain w-full h-full dark:hidden"
+                  src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-side.svg"
+                  alt=""
+                />
+                <img
+                  class="object-contain w-full h-full hidden dark:block"
+                  src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-side-dark.svg"
+                  alt=""
+                />
+              </button>
+            </li>
+          </ul>
+
+        </div>
+
+
+      </div>
+
+      <div class="w-full mt-6 lg:max-w-lg lg:mt-0 shrink-0 px-4">
+        <div
+          class="p-4 border border-gray-200 rounded-lg sm:p-6 lg:p-8 bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
+        >
+          <h1 class="text-xl font-semibold text-gray-900 dark:text-white">
+            {{business.name}}
+          </h1>
+
+          <div class="mt-4 sm:gap-4 sm:items-center sm:flex">
+            <span
+              class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300"
+            >
+              {{business.email}}
+            </span>
+
+          </div>
+
+          <div class="flex items-center gap-1 mt-4">
+            <svg
+              class="w-5 h-5 text-primary-700 dark:text-primary-500"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+              />
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z"
+              />
+            </svg>
+            <p
+              class="text-sm font-medium text-primary-700 dark:text-primary-500"
+            >
+              Malaysia
+            </p>
+          </div>
+          <p class="mt-4 md:mt-6 text-sm font-normal text-gray-500 dark:text-gray-400">
+           {{business.overview}}
+          </p>
+
+          <div class="gap-4 mt-4 md:mt-6 sm:flex sm:items-center lg:flex-col">
+
+            <button (click)="sendMessage(business)"
+              class="text-white w-full mt-4 sm:mt-0 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center"
+              role="button"
+            >
+              <svg class="w-5 h-5 -ms-2 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 13h3.439a.991.991 0 0 1 .908.6 3.978 3.978 0 0 0 7.306 0 .99.99 0 0 1 .908-.6H20M4 13v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-6M4 13l2-9h12l2 9"/>
+              </svg>
+
+              Send message
+            </button>
+          </div>
+
+          <div
+            class="pt-8 mt-8 space-y-6 border-t border-gray-200 dark:border-gray-700"
+          >
+            <div>
+              <p class="text-base font-medium text-gray-900 dark:text-white">
+                Services
+              </p>
+
+              <div class="flex flex-wrap items-center gap-2 mt-2">
+                @for(service of business.services; track service.id){
+                <label for="green2" class="relative block">
+
+                  <div
+                    class="relative flex items-center justify-center gap-4 px-2 py-1 overflow-hidden text-gray-500 hover:bg-gray-100 border border-gray-300 rounded-lg cursor-pointer bg-white peer-checked:bg-primary-50 peer-checked:text-primary-700 peer-checked:border-primary-700 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 dark:peer-checked:bg-primary-900 dark:peer-checked:border-primary-600 dark:peer-checked:text-primary-300 dark:hover:bg-gray-600"
+                  >
+                    <p class="text-sm font-medium">{{service.name}}</p>
+                  </div>
+                </label>
+                }
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="pt-8 mt-8 space-y-6 border-t border-gray-200 dark:border-gray-700"
+          >
+            <div>
+              <p class="text-base font-medium text-gray-900 dark:text-white">
+                Location
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+                @for (address of business.addresses; track address) {
+                  <div
+                    class="p-4 bg-white border rounded-lg shadow-sm hover:shadow-md
+                   dark:bg-gray-800 dark:border-gray-700"
+                  >
+
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                      {{ address.street }}<br>
+                      {{ address.city }}, {{ address.state }} {{ address.zip }}
+                    </p>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+}
+@else{
+  <app-loading-spinner></app-loading-spinner>
+}

@@ -1,0 +1,5 @@
+<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="small_size">{{title}}</label>
+<input [accept]="contentType" (change)="onInputChange($event)" class="cursor-pointer bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full shadow-xs placeholder:text-body" id="small_size" type="file" [formControl]="control">
+@if(control.hasError('required') && control.touched){
+<span class="text-rose-600">*File is required</span>
+}

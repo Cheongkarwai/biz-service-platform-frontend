@@ -1,0 +1,254 @@
+<!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
+@if ($accountInformation | async; as accountInformation) {
+  <div class="mx-auto max-w-7xl pt-16 lg:flex lg:gap-x-16 lg:px-8">
+    <h1 class="sr-only">General Settings</h1>
+
+    <aside
+      class="flex overflow-x-auto border-b border-gray-900/5 py-4 lg:block lg:w-64 lg:flex-none lg:border-0 lg:py-20 dark:border-white/10">
+      <nav class="flex-none px-4 sm:px-6 lg:px-0">
+        <ul role="list" class="flex gap-x-3 gap-y-1 whitespace-nowrap lg:flex-col">
+          <li>
+            <!-- Current: "bg-gray-50 dark:bg-white/5 text-indigo-600 dark:text-white", Default: "text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5" -->
+            <a href="#"
+               class="group flex gap-x-3 rounded-md bg-gray-50 py-2 pl-2 pr-3 text-sm/6 font-semibold text-indigo-600 dark:bg-white/5 dark:text-white">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon"
+                   aria-hidden="true" class="size-6 shrink-0 text-indigo-600 dark:text-white">
+                <path
+                  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              General
+            </a>
+          </li>
+          <li>
+            <a (click)="logout()"
+                    class="cursor-pointer group flex gap-x-3 rounded-md py-2 pl-2 pr-3 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white">
+              <svg
+                class="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600 dark:text-gray-500 dark:group-hover:text-white"
+                aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+              </svg>
+              Logout
+            </a>
+          </li>
+<!--                  <li>-->
+<!--                    <a href="#" class="group flex gap-x-3 rounded-md py-2 pl-2 pr-3 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white">-->
+<!--                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600 dark:text-gray-500 dark:group-hover:text-white">-->
+<!--                        <path d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" stroke-linecap="round" stroke-linejoin="round" />-->
+<!--                      </svg>-->
+<!--                      Notifications-->
+<!--                    </a>-->
+<!--                  </li>-->
+<!--                  <li>-->
+          <!--          <a href="#" class="group flex gap-x-3 rounded-md py-2 pl-2 pr-3 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white">-->
+          <!--            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600 dark:text-gray-500 dark:group-hover:text-white">-->
+          <!--              <path d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" stroke-linecap="round" stroke-linejoin="round" />-->
+          <!--            </svg>-->
+          <!--            Plan-->
+          <!--          </a>-->
+          <!--        </li>-->
+          <!--        <li>-->
+          <!--          <a href="#" class="group flex gap-x-3 rounded-md py-2 pl-2 pr-3 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white">-->
+          <!--            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600 dark:text-gray-500 dark:group-hover:text-white">-->
+          <!--              <path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" stroke-linecap="round" stroke-linejoin="round" />-->
+          <!--            </svg>-->
+          <!--            Billing-->
+          <!--          </a>-->
+          <!--        </li>-->
+          <!--        <li>-->
+          <!--          <a href="#" class="group flex gap-x-3 rounded-md py-2 pl-2 pr-3 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white">-->
+          <!--            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600 dark:text-gray-500 dark:group-hover:text-white">-->
+          <!--              <path d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" stroke-linecap="round" stroke-linejoin="round" />-->
+          <!--            </svg>-->
+          <!--            Team members-->
+          <!--          </a>-->
+          <!--        </li>-->
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="px-4 py-16 sm:px-6 lg:flex-auto lg:px-0 lg:py-20">
+      <div class="mx-auto max-w-2xl space-y-16 sm:space-y-20 lg:mx-0 lg:max-w-none">
+        <div>
+          <div class="flex items-center justify-between space-x-3">
+            <div>
+              <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Personal Profile</h2>
+              <p class="mt-1 text-sm/6 text-gray-500 dark:text-gray-400">This information will be displayed publicly so
+                be careful what you share.</p>
+            </div>
+            <button (click)="editPersonalProfile(accountInformation[0])" type="button"
+                    class="font-semibold text-rose-600 hover:text-rose-500 dark:text-rose-400 dark:hover:text-rose-300">
+              Edit
+            </button>
+
+          </div>
+          <dl
+            class="mt-6 divide-y divide-gray-100 border-t border-gray-200 text-sm/6 dark:divide-white/5 dark:border-white/5">
+            <div class="py-6 sm:flex">
+              <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">First name</dt>
+              <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                <div class="text-gray-900 dark:text-gray-300">{{ accountInformation[0].firstName }}</div>
+              </dd>
+            </div>
+            <div class="py-6 sm:flex">
+              <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">Last name</dt>
+              <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                <div class="text-gray-900 dark:text-gray-300">{{ accountInformation[0].lastName }}</div>
+              </dd>
+            </div>
+            <div class="py-6 sm:flex">
+              <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">Email address</dt>
+              <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                <div class="text-gray-900 dark:text-gray-300">{{ accountInformation[0].emailAddress }}</div>
+              </dd>
+            </div>
+            <div class="py-6 sm:flex">
+              <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">Mobile number</dt>
+              <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                <div class="text-gray-900 dark:text-gray-300">{{ accountInformation[0].mobileNumber }}</div>
+              </dd>
+            </div>
+            <div class="py-6 sm:flex">
+              <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">Birth date</dt>
+              <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                <div
+                  class="text-gray-900 dark:text-gray-300">{{ accountInformation[0].birthDate | date : 'mediumDate' }}
+                </div>
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        @if (accountInformation[1]) {
+          <div>
+            <div class="flex items-center justify-between space-x-3">
+              <div>
+                <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Business Profile</h2>
+                <p class="mt-1 text-sm/6 text-gray-500 dark:text-gray-400">This information will be displayed publicly
+                  so
+                  be careful what you share.</p>
+              </div>
+              <button (click)="editBusinessProfile(accountInformation[1])" type="button"
+                      class="font-semibold text-rose-600 hover:text-rose-500 dark:text-rose-400 dark:hover:text-rose-300">
+                Edit
+              </button>
+
+            </div>
+            <dl
+              class="mt-6 divide-y divide-gray-100 border-t border-gray-200 text-sm/6 dark:divide-white/5 dark:border-white/5">
+              <div class="py-6 sm:flex">
+                <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">Name</dt>
+                <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div class="text-gray-900 dark:text-gray-300">{{ accountInformation[1]?.name }}</div>
+                </dd>
+              </div>
+              <div class="py-6 sm:flex">
+                <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">Email address</dt>
+                <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div class="text-gray-900 dark:text-gray-300">{{ accountInformation[1]?.email }}</div>
+                </dd>
+              </div>
+              <div class="py-6 sm:flex">
+                <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">Mobile number</dt>
+                <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div class="text-gray-900 dark:text-gray-300">{{ accountInformation[1]?.mobileNumber }}</div>
+                </dd>
+              </div>
+              <div class="py-6 sm:flex">
+                <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">Overview</dt>
+                <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div class="text-gray-900 dark:text-gray-300">{{ accountInformation[1]?.overview }}</div>
+                </dd>
+              </div>
+              <div class="py-6 sm:flex">
+                <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">Approval Status</dt>
+                <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                  <div class="text-gray-900 dark:text-gray-300">{{ accountInformation[1]?.approvalStatus }}</div>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+
+          <div>
+            <div class="flex items-center justify-between space-x-3">
+              <div>
+                <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Business Service</h2>
+                <p class="mt-1 text-sm/6 text-gray-500 dark:text-gray-400">Services that your business provides.</p>
+              </div>
+              <button (click)="editBusinessService(accountInformation[1])" type="button"
+                      class="font-semibold text-rose-600 hover:text-rose-500 dark:text-rose-400 dark:hover:text-rose-300">
+                Edit
+              </button>
+            </div>
+
+            <dl
+              class="mt-6 divide-y divide-gray-100 border-t border-gray-200 text-sm/6 dark:divide-white/5 dark:border-white/5">
+              @for (service of accountInformation[1]?.services; track service.id) {
+                <div class="py-6 sm:flex">
+                  <dt
+                    class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">{{ service.name }}
+                  </dt>
+                </div>
+              }
+            </dl>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between space-x-3">
+              <div>
+                <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Business Addresses</h2>
+                <p class="mt-1 text-sm/6 text-gray-500 dark:text-gray-400">Locations of your business.</p>
+              </div>
+              <button (click)="editBusinessAddress(accountInformation[1])" type="button"
+                      class="font-semibold text-rose-600 hover:text-rose-500 dark:text-rose-400 dark:hover:text-rose-300">
+                Edit
+              </button>
+            </div>
+
+            <dl
+              class="mt-6 divide-y divide-gray-100 border-t border-gray-200 text-sm/6 dark:divide-white/5 dark:border-white/5">
+              @for (address of accountInformation[1]?.addresses; track address.type) {
+                <div class="py-6 sm:flex">
+                  <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">Address Type</dt>
+                  <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                    <div class="text-gray-900 dark:text-gray-300">{{ address.type }}</div>
+                  </dd>
+                </div>
+                <div class="py-6 sm:flex">
+                  <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">Street</dt>
+                  <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                    <div class="text-gray-900 dark:text-gray-300">{{ address.street }}</div>
+                  </dd>
+                </div>
+                <div class="py-6 sm:flex">
+                  <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">City</dt>
+                  <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                    <div class="text-gray-900 dark:text-gray-300">{{ address.city }}</div>
+                  </dd>
+                </div>
+                <div class="py-6 sm:flex">
+                  <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">State</dt>
+                  <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                    <div class="text-gray-900 dark:text-gray-300">{{ address.state }}</div>
+                  </dd>
+                </div>
+                <div class="py-6 sm:flex">
+                  <dt class="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6 dark:text-white">Zip</dt>
+                  <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                    <div class="text-gray-900 dark:text-gray-300">{{ address.zip }}</div>
+                  </dd>
+                </div>
+              }
+            </dl>
+          </div>
+        }
+      </div>
+    </main>
+  </div>
+} @else {
+  <app-loading-spinner></app-loading-spinner>
+}

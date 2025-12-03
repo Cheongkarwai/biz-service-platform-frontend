@@ -21,7 +21,14 @@
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #f7fafc;}
+
+/* Dark theme override */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #020617; /* dark background */
+  }
+}
 /* Step 1: Ensure the root elements are defined (if you want full viewport height) */
 
 
@@ -34,4 +41,10 @@ ui-resource-renderer {
 /* Step 4: Finally, apply height to the target div */
 ui-resource-renderer > div {
   height: 100%;
+}
+
+
+.datepicker-picker,
+.datepicker-dropdown {
+  z-index: 1100 !important;
 }

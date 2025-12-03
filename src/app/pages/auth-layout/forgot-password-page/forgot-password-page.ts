@@ -4,10 +4,10 @@ import {CommonModule} from '@angular/common';
 import {Router, RouterModule} from '@angular/router';
 import {catchError, finalize, of, tap} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
-import {Toast} from '../../components/toast/toast';
+import {Toast} from '../../../components/toast/toast';
 import {AuthError} from '@supabase/supabase-js';
-import {UserService} from '../../services/user/user-service';
-import {ErrorResponse} from '../../model/supabase-auth-error';
+import {UserService} from '../../../services/user/user-service';
+import {ErrorResponse} from '../../../model/supabase-auth-error';
 
 @Component({
   selector: 'app-forgot-password-page',

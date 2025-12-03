@@ -1,0 +1,32 @@
+<!-- Toast container -->
+<form [formGroup]="messageForm" id="send-message-toast"
+     class="w-full max-w-sm p-4 rounded-lg shadow-lg bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+     role="alert"
+     data-dismissible="toast">
+
+  <div class="flex justify-between items-start">
+    <div class="w-full">
+      <h3 class="text-sm font-semibold text-gray-900 dark:text-white">
+        Send Message
+      </h3>
+
+      <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+        Write your message to this business:
+      </p>
+
+      <!-- Message input -->
+      <app-text-area [control]="message"
+
+         placeholder="Type your message..."
+      ></app-text-area>
+
+      <!-- Send button -->
+      <button
+        (click)="sendMessage()"
+        class="cursor-pointer mt-3 w-full text-sm font-medium text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 rounded-lg px-3 py-2 dark:bg-primary-600 dark:hover:bg-primary-700">
+        Send
+      </button>
+    </div>
+
+  </div>
+</form>

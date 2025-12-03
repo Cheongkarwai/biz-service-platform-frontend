@@ -1,0 +1,111 @@
+@if(stage$ | async; as stage){
+<div class="max-w-3xl mx-auto p-6 my-10 bg-white antialiased dark:bg-gray-900 rounded-lg shadow min-h-full" >
+
+    <ol class="flex items-center w-full space-x-4 mb-10">
+
+  <!-- Stepper -->
+    <li [ngClass]="stage === 'SUBMISSION' ? 'flex items-center text-rose-600' : 'flex items-center text-gray-500'">
+      <span [ngClass]="stage === 'SUBMISSION' ? 'flex items-center justify-center w-8 h-8 border border-rose-600 rounded-full dark:text-white' : 'flex items-center justify-center w-8 h-8 border border-gray-300 rounded-full dark:text-white'">1</span>
+      <span class="ml-2 font-medium">Register</span>
+    </li>
+
+    <li [ngClass]="stage === 'PENDING' ? 'flex items-center text-rose-600' : 'flex items-center text-gray-500'">
+      <span [ngClass]="stage === 'PENDING' ? 'flex items-center justify-center w-8 h-8 border border-rose-600 rounded-full dark:text-white' : 'flex items-center justify-center w-8 h-8 border border-gray-300 rounded-full dark:text-white'">2</span>
+      <span class="ml-2">Pending Review</span>
+    </li>
+
+    <li [ngClass]="stage === 'APPROVED' || stage === 'REJECTED' ? 'flex items-center text-rose-600' : 'flex items-center text-gray-500'">
+      <span [ngClass]="stage === 'APPROVED' || stage === 'REJECTED' ? 'flex items-center justify-center w-8 h-8 border border-rose-600 rounded-full dark:text-white' : 'flex items-center justify-center w-8 h-8 border border-gray-300 rounded-full dark:text-white'">3</span>
+      <span class="ml-2">Completed</span>
+    </li>
+  </ol>
+
+  <!-- Registration Form -->
+  @switch (stage){
+    @case ('SUBMISSION') {
+      <h2 class="text-2xl font-bold mb-6 dark:text-white">Service Provider Registration</h2>
+    }
+  }
+
+  @if(stage === 'SUBMISSION'){
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="space-y-6 flex flex-col">
+
+    <!-- Personal Details -->
+    <app-text-input title="Name" [control]="name" placeholder="Company Name"></app-text-input>
+
+   <app-text-input title="Email" [control]="email" placeholder="Company Email"></app-text-input>
+
+    <app-phone-input title="Phone number" [control]="mobileNumber" [prefixControl]="prefixMobileNumber" placeholder="Company Mobile Number"></app-phone-input>
+
+
+    <app-text-area title="Description" [control]="overview" placeholder="Company Description"></app-text-area>
+
+    <app-text-input title="Street" [control]="street" placeholder="Company Address Street"></app-text-input>
+
+    <app-text-input title="City" [control]="city" placeholder="Company Address City"></app-text-input>
+
+    <app-single-select title="State" [control]="state" placeholder="Select state" [options]="stateOptions"></app-single-select>
+
+    <app-zipcode-input title="Zipcode" [control]="zip"  placeholder="Company Address Zipcode"></app-zipcode-input>
+
+    <app-select title="Services" [control]="services" [options]="specialities$ | async"></app-select>
+
+    <app-upload-file title="Logo" [control]="logo"></app-upload-file>
+
+    <app-file-upload title="Document" [control]="documents" [multiple]="true"></app-file-upload>
+    <!-- Submit Button -->
+    <br />
+    <button
+      class="w-full bg-rose-600 hover:bg-rose-700 text-white py-2 rounded-lg transition">
+      Register
+    </button>
+
+  </form>
+  }
+  @else if(stage === 'PENDING'){
+    <div class="space-y-6 flex flex-col">
+      <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+        <div class="mx-auto max-w-2xl px-4 2xl:px-0">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl mb-2">Thanks for registering</h2>
+          <p class="text-gray-500 dark:text-gray-400 mb-6 md:mb-8">Your registration will be reviewed by administrator within 7 days working hours. We will notify you by email once your registration is either approved or rejected. </p>
+          <div class="flex items-center space-x-4">
+            <a href="#" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">View your submission</a>
+            <a [href]="['']" class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Return to home</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  }
+  @else if(stage === 'APPROVED'){
+    <div class="space-y-6 flex flex-col">
+      <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+        <div class="mx-auto max-w-2xl px-4 2xl:px-0">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl mb-2">Congratulations!</h2>
+          <p class="text-gray-500 dark:text-gray-400 mb-6 md:mb-8">Your registration has been approved. You can now start selling your services.</p>
+          @if(businessId$ | async; as businessId){
+          <div class="flex items-center space-x-4">
+            <a [routerLink]="['../../','businesses', businessId, 'details']" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800" >View your page</a>
+          </div>
+          }
+        </div>
+      </section>
+    </div>
+  }
+  @else if(stage === 'REJECTED'){
+    <div class="space-y-6 flex flex-col">
+      <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+        <div class="mx-auto max-w-2xl px-4 2xl:px-0">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl mb-2">Sorry !</h2>
+          <p class="text-gray-500 dark:text-gray-400 mb-6 md:mb-8">Your registration has been rejected. Please try again after 1 month.</p>
+          <div class="flex items-center space-x-4">
+            <a [href]="['']" class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Return to home</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  }
+</div>
+}
+@else{
+<app-loading-spinner></app-loading-spinner>
+}

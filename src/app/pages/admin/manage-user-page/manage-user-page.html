@@ -1,34 +1,24 @@
-<!--<div class="flex items-center sm:justify-center ml-4 sm:ml-0">-->
-<!--  <table class="ttext-sm border-separate border-spacing-y-2">-->
-<!--    <thead class="hidden sm:table-header-group">-->
-<!--    <tr>-->
-<!--      <th>Nameasdadas</th>-->
-<!--      <th>Email</th>-->
-<!--      <th>Company</th>-->
-<!--      <th>Status</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr class="flex flex-col mb-4 sm:table-row">-->
-<!--      <td class="px-4 py-3 bg-gray-200 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:last:rounded-b-none sm:first:rounded-tl-lg sm:first:rounded-bl-lg sm:last:rounded-tr-lg sm:last:rounded-br-lg">Frodo Baggins</td>-->
-<!--      <td class="px-4 py-3 bg-gray-200 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:last:rounded-b-none sm:first:rounded-tl-lg sm:first:rounded-bl-lg sm:last:rounded-tr-lg sm:last:rounded-br-lg">fbaggins@mail.com</td>-->
-<!--      <td class="px-4 py-3 bg-gray-200 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:last:rounded-b-none sm:first:rounded-tl-lg sm:first:rounded-bl-lg sm:last:rounded-tr-lg sm:last:rounded-br-lg">Fellowship of the Ring</td>-->
-<!--      <td class="px-4 py-3 bg-gray-200 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:last:rounded-b-none sm:first:rounded-tl-lg sm:first:rounded-bl-lg sm:last:rounded-tr-lg sm:last:rounded-br-lg">-->
-<!--        <span class="float-right rounded-md bg-green-600/50 px-4 py-px text-xs font-semibold uppercase text-green-900 antialiased">Active</span>-->
-<!--      </td>-->
-<!--    </tr>-->
+@if (customers$ | async; as customers) {
+  <div class="p-10 sm:ps-70 dark:bg-gray-800 min-h-full">
+    <div class="flex justify-between py-10 flex-wrap gap-3">
+      <div>
+        <h5 class="text-xl dark:text-white">Manage User</h5>
+      </div>
+    </div>
+    <div>
+      <div>
+        <app-table [columns]="columns" [rows]="customers" (edit)="handleEdit($event)"></app-table>
+      </div>
+    </div>
+    @if(hasMore$ | async; as hasMore) {
+        <div class="flex justify-center pt-10">
+          <button  type="button" (click)="loadMore()" class="py-2.5 px-5 me-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-rose-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-rose-700 focus:text-rose-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 inline-flex items-center">
+            {{ 'Load More' }}
+          </button>
+        </div>
+    }
+  </div>
 
-<!--    <tr class="flex flex-col mb-4 sm:table-row">-->
-<!--      <td class="px-4 py-3 bg-gray-200 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:last:rounded-b-none sm:first:rounded-tl-lg sm:first:rounded-bl-lg sm:last:rounded-tr-lg sm:last:rounded-br-lg">Frodo Baggins</td>-->
-<!--      <td class="px-4 py-3 bg-gray-200 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:last:rounded-b-none sm:first:rounded-tl-lg sm:first:rounded-bl-lg sm:last:rounded-tr-lg sm:last:rounded-br-lg">fbaggins@mail.com</td>-->
-<!--      <td class="px-4 py-3 bg-gray-200 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:last:rounded-b-none sm:first:rounded-tl-lg sm:first:rounded-bl-lg sm:last:rounded-tr-lg sm:last:rounded-br-lg">Fellowship of the Ring</td>-->
-<!--      <td class="px-4 py-3 bg-gray-200 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:last:rounded-b-none sm:first:rounded-tl-lg sm:first:rounded-bl-lg sm:last:rounded-tr-lg sm:last:rounded-br-lg">-->
-<!--        <span class="float-right rounded-md bg-green-600/50 px-4 py-px text-xs font-semibold uppercase text-green-900 antialiased">Active</span>-->
-<!--      </td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
-<!--</div>-->
-<div class="p-10 sm:ps-70">
-  <app-table [columns]="columns" [rows]="rows"></app-table>
-</div>
+} @else {
+  <app-loading-spinner></app-loading-spinner>
+}

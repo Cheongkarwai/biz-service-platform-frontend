@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 
@@ -8,7 +8,7 @@ import {CommonModule} from '@angular/common';
   templateUrl: './text-input.html',
   styleUrl: './text-input.css',
 })
-export class TextInput {
+export class TextInput implements OnChanges{
 
   @Input()
   control!: FormControl<string>;
@@ -17,5 +17,18 @@ export class TextInput {
   title!: string;
 
   @Input()
+  disabled: boolean = false;
+
+  @Input()
   placeholder!: string;
+
+  ngOnChanges() {
+    if (!this.control) return;
+
+    if (this.disabled) {
+      this.control.disable({ emitEvent: false });
+    } else {
+      this.control.enable({ emitEvent: false });
+    }
+  }
 }

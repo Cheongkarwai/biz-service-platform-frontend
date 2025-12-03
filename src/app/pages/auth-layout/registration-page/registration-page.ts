@@ -2,14 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router, RouterModule} from "@angular/router";
 import {catchError, finalize, of, tap} from 'rxjs';
-import {Toast} from '../../components/toast/toast';
+import {Toast} from '../../../components/toast/toast';
 import {MatDialog} from '@angular/material/dialog';
-import {UserService} from '../../services/user/user-service';
-import {ErrorResponse} from '../../model/supabase-auth-error';
-import {TextInput} from '../../components/text-input/text-input';
-import {PhoneInput} from '../../components/phone-input/phone-input';
+import {UserService} from '../../../services/user/user-service';
+import {ErrorResponse} from '../../../model/supabase-auth-error';
+import {TextInput} from '../../../components/text-input/text-input';
+import {PhoneInput} from '../../../components/phone-input/phone-input';
 import {initFlowbite} from 'flowbite';
-import {DatePicker} from '../../components/date-picker/date-picker';
+import {DatePicker} from '../../../components/date-picker/date-picker';
 
 @Component({
   selector: 'app-registration-page',
@@ -49,6 +49,11 @@ export class RegistrationPage implements OnInit {
   }
 
   onSubmit() {
+
+    this.registrationForm.markAllAsTouched();
+
+    if(this.registrationForm.invalid) return;
+
     const email = this.email.value;
     const password = this.password.value;
     const phoneNumber = this.prefixPhone.value + this.phone.value;

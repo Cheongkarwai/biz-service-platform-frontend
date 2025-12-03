@@ -1,53 +1,27 @@
-<!--<div class="flex items-center sm:justify-center ml-4 sm:ml-0">-->
-<!--  <table class="ttext-sm border-separate border-spacing-y-3">-->
-<!--    <thead class="hidden sm:table-header-group text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">-->
-<!--    <tr>-->
-<!--      @for(column of columns; track column){-->
-<!--      <th class="capitalize">{{column}}</th>-->
-<!--      }-->
-<!--      <th>Action</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--      @for(row of rows; track row){-->
-<!--    <tr class="flex flex-col mb-4 sm:table-row">-->
-<!--        @for(column of columns; track column){-->
-<!--        <td class="px-7 py-3 bg-gray-200 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:last:rounded-b-none sm:first:rounded-tl-lg sm:first:rounded-bl-lg sm:last:rounded-tr-lg sm:last:rounded-br-lg">{{row[column]}}</td>-->
-<!--       }-->
-<!--      <td class="px-7 py-3 bg-gray-200 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:last:rounded-b-none sm:first:rounded-tl-lg sm:first:rounded-bl-lg sm:last:rounded-tr-lg sm:last:rounded-br-lg">-->
-
-<!--        <span class="">-->
-<!--          <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>-->
-<!--        </span>-->
-<!--      </td>-->
-
-<!--    </tr>-->
-<!--      }-->
-<!--    </tbody>-->
-<!--  </table>-->
-<!--</div>-->
-<div class="border-1 border-gray-200 rounded-lg">
+<div class="border-1 border-gray-200 dark:border-gray-700">
 <div class="flex items-center sm:justify-center sm:ml-0">
   <table class="text-sm text-left text-gray-500  w-full">
-    <thead class="hidden sm:table-header-group text-xs text-gray-700 bg-gray-100">
+    <thead class="hidden sm:table-header-group text-xs text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
     <tr>
       @for(column of columns; track column){
-        <th scope="col" class="px-6 py-3 font-semibold capitalize">{{column}}</th>
+        <th scope="col" class="px-6 py-3 font-semibold capitalize">{{column.label}}</th>
       }
       <th scope="col" class="px-6 py-3 font-semibold">Action</th>
     </tr>
     </thead>
     <tbody>
       @for(row of rows; track row){
-        <tr class="flex flex-col mb-4 sm:table-row hover:bg-gray-50">
+        <tr class="flex flex-col mb-4 sm:table-row  ">
           @for(column of columns; track column){
-            <td class="px-6 py-4 bg-white font-medium text-gray-900 whitespace-nowrap first:rounded-t-lg sm:first:rounded-t-none sm:first:rounded-l-lg text-xs">{{row[column]}}</td>
+            <td class="px-6 py-4 dark:text-gray-300 dark:bg-gray-800 bg-white font-medium text-gray-900 whitespace-nowrap first:rounded-t-lg sm:first:rounded-t-none sm:first:rounded-l-lg text-xs">{{row[column.key]}}</td>
           }
-          <td class="px-6 py-4 bg-white last:rounded-b-lg sm:last:rounded-b-none sm:last:rounded-r-lg text-xs">
+          <td class="px-6 py-4 dark:text-gray-300 dark:bg-gray-800 bg-white last:rounded-b-lg sm:last:rounded-b-none sm:last:rounded-r-lg text-xs">
 
-        <span class="">
-          <button class="font-medium text-blue-600 hover:underline">Edit</button>
+            @if(canEditRow(row)){
+        <span>
+          <button class="font-medium text-blue-600 hover:underline" (click)="openEditDialog(row)">Edit</button>
         </span>
+            }
           </td>
 
         </tr>

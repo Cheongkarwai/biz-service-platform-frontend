@@ -1,0 +1,183 @@
+<div class="w-full  mx-auto bg-white dark:bg-gray-900 p-8 space-y-8">
+
+  <!-- Header -->
+  <div class="border-b pb-4 flex justify-between items-center">
+    <h5 class="text-2xl font-semibold dark:text-white">Edit Business</h5>
+    <div class="flex flex-wrap justify-end gap-3 pt-4 border-t pt-4">
+      <button
+        type="button"
+        [disabled]="loading"
+        (click)="reject()"
+        class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-medium text-white bg-red-600 hover:bg-red-700 disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        {{ loading ? 'Rejecting...' : 'Reject' }}
+      </button>
+
+      <button
+        type="button"
+        [disabled]="loading"
+        (click)="approve()"
+        class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-medium text-white bg-primary-700 hover:bg-primary-800 disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        {{ loading ? 'Approving...' : 'Approve' }}
+      </button>
+    </div>
+  </div>
+
+  <ng-container>
+    <form
+      [formGroup]="viewBusinessForm"
+      class="grid grid-cols-1 lg:grid-cols-3 gap-6"
+    >
+      <!-- LEFT: Business details + documents + actions -->
+      <div class="lg:col-span-3 space-y-6">
+
+        <!-- Business Info Card -->
+        <section class="space-y-4">
+          <h3 class="text-lg font-semibold dark:text-white">Business Details</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <app-text-input
+              title="Name"
+              [disabled]="true"
+              [control]="name"
+              placeholder="Name"
+            ></app-text-input>
+
+            <app-text-input
+              title="Email"
+              [disabled]="true"
+              [control]="email"
+              placeholder="Email"
+            ></app-text-input>
+
+            <app-text-input
+              title="Phone Number"
+              [disabled]="true"
+              [control]="mobileNumber"
+              placeholder="Phone Number"
+            ></app-text-input>
+
+            <app-text-input
+              title="Logo"
+              [disabled]="true"
+              [control]="logo"
+              placeholder="Logo"
+            ></app-text-input>
+
+            <div class="md:col-span-2">
+              <app-text-input
+                title="Overview"
+                [disabled]="true"
+                [control]="overview"
+                placeholder="Overview"
+              ></app-text-input>
+            </div>
+          </div>
+        </section>
+
+        <!-- Status + Documents Card -->
+        <section class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-lg font-semibold dark:text-white">Status</h3>
+              <p class="text-sm dark:text-gray-400">
+                {{ approvalStatus.value }}
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <h4 class="text-sm font-medium dark:text-white">Documents</h4>
+            @for (file of documents.value; track file) {
+              <div
+                class="flex flex-col gap-2 pt-1"
+              >
+                <button
+                  type="button"
+                  (click)="downloadFile(file)"
+                  class="border border-gray-300 bg-gray-100 flex items-center justify-between px-3 py-2 rounded-md dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                >
+                  <span class="truncate text-left">
+                    {{ file.key | fileName }}
+                  </span>
+                  <svg
+                    class="fill-current w-4 h-4 ml-3 shrink-0"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            }
+          </div>
+        </section>
+
+        <div class="space-y-6">
+
+          <section class="space-y-4">
+            <h3 class="text-lg font-semibold dark:text-white">Services</h3>
+            <div class="space-y-3">
+              @for (speciality of servicesFormGroup; track speciality) {
+                <app-text-input
+                  [disabled]="true"
+                  [control]="getServiceNameControl(speciality)"
+                  placeholder="Service"
+                ></app-text-input>
+              }
+            </div>
+          </section>
+
+
+          <section class="space-y-4">
+            <h3 class="text-lg font-semibold dark:text-white">Addresses</h3>
+
+            <div class="space-y-4">
+              @for (address of addressFormGroup; track address) {
+                <div class="border border-gray-200 rounded-md p-3 dark:border-gray-700">
+                  <app-text-input
+                    title="Address Type"
+                    [disabled]="true"
+                    [control]="getAddressControl(address, 'type')"
+                  ></app-text-input>
+
+                  <div class="pt-3">
+                  <app-text-input
+                    title="Street"
+                    [disabled]="true"
+                    [control]="getAddressControl(address, 'street')"
+                  ></app-text-input>
+                  </div>
+                  <div class="grid grid-cols-3 gap-3 pt-3">
+                    <app-text-input
+                      title="City"
+                      [disabled]="true"
+                      [control]="getAddressControl(address, 'city')"
+                    ></app-text-input>
+
+                    <app-text-input
+                      title="State"
+                      [disabled]="true"
+                      [control]="getAddressControl(address, 'state')"
+                    ></app-text-input>
+
+                    <app-text-input
+                      title="Zip"
+                      [disabled]="true"
+                      [control]="getAddressControl(address, 'zip')"
+                    ></app-text-input>
+                  </div>
+                </div>
+              }
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+    </form>
+  </ng-container>
+</div>

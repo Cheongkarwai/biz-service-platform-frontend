@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Business} from '../../model/business';
 
 @Component({
   selector: 'app-table',
@@ -8,8 +9,19 @@ import {Component, Input} from '@angular/core';
 })
 export class Table {
   @Input()
-  columns: string [] = [];
+  columns: any [] = [];
 
   @Input()
   rows: any [] = [];
+
+  @Output() contextMenu = new EventEmitter<any>();
+
+  @Output() edit = new EventEmitter<any>();
+
+  @Input() canEditRow: (row: any) => boolean = () => true;
+
+
+  openEditDialog(item: any) {
+    this.edit.emit(item);
+  }
 }

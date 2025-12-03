@@ -7,9 +7,6 @@ export const authenticatedGuard: CanActivateFn = (route, state) => {
 
   const supabase = inject(SupabaseService);
   const router = inject(Router);
-
-  console.log(supabase.isAuthenticated());
-
   return supabase.isAuthenticated()
     .pipe(map(isAuthenticated => {
       return !isAuthenticated;

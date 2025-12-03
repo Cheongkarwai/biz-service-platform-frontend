@@ -1,10 +1,10 @@
-<header class="p-24 border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+<header class="p-24 border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
   <h1 class="text-4xl dark:text-white">Service Directory</h1>
   <p class="text-sm text-gray-400 pt-7">Find services that suits your needs</p>
 </header>
 
 <main class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 min-h-[70rem]">
-  <div class=" col-span-1 flex justify-center dark:bg-gray-900 dark:border-gray-700">
+  <div class=" col-span-1 flex justify-center bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
 
     @if(categories$ | async; as categories){
       <ul class="p-5 w-full h-full dark:bg-gray-900 dark:border-gray-700">
@@ -18,7 +18,7 @@
     }
   </div>
   <div
-    class="flex justify-content-center flex-col w-full px-14 sm:px-24 md:px-24 lg:px-24 py-12 gap-24 col-span-3 bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
+    class="flex justify-content-center flex-col w-full px-14 sm:px-24 md:px-24 lg:px-24 py-12 gap-24 col-span-3 bg-white dark:bg-gray-900 dark:border-gray-700">
     @if(specialities$ | async; as specialities){
       <div class="grid grid-cols-1 gap-7">
         @if (specialities.length === 0) {
